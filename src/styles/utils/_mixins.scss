@@ -1,6 +1,24 @@
-@mixin hover($_property, $_toValue) {
-  transition: #{$_property} 0.3s;
-  &:hover {
-    #{$_property}: $_toValue;
+@mixin calendar-days {
+  @for $i from 1 through 31 {
+    & div:nth-child(#{$i})::before {
+      content: "#{$i}";
+    }
+  }
+}
+
+@mixin week-day {
+  @each $el in $list {
+    &-#{$el} div:first-child {
+      grid-column-start: $day;
+    }
+    $day: $day + 1;
+  }
+}
+
+@mixin setting-day-in-month {
+  @for $i from 28 to 31 {
+    &-#{$i} div:nth-of-type(#{$i}) ~ div {
+      display: none;
+    }
   }
 }

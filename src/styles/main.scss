@@ -1,7 +1,42 @@
 @import "utils";
-@import "fonts";
-@import "typography";
 
-body {
-  background: $c-gray;
+* {
+  box-sizing: border-box;
+}
+
+.body {
+  min-height: 100vh;
+  font: 30px Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar {
+  display: grid;
+  grid-gap: 1px;
+  grid-template-columns: repeat(7, 100px);
+  grid-auto-rows: 100px;
+
+  div {
+    background: #eee;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s, background 0.5s;
+
+    &:hover {
+      transform: translateY(-20px);
+      cursor: pointer;
+      background: pink;
+    }
+  }
+
+  @include calendar-days;
+
+  @include week-day;
+
+  @include setting-day-in-month;
 }
